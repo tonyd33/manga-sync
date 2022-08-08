@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "target": "esnext",
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "incremental": true,
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noImplicitReturns": true,
+        "lib": ["esnext"],
+        "baseUrl": "src",
+        "strictNullChecks": true
+    },
+    "include": ["src/**/*.ts"]
+}

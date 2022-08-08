@@ -1,0 +1,42 @@
+{
+  "name": "manga-sync",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc && node node_modules/.bin/yab dist --once > /dev/null",
+    "cli": "npm run build && node dist/cli.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/node": "^7.18.9",
+    "@types/archiver": "^5.3.1",
+    "@types/cli-progress": "^3.11.0",
+    "@types/inquirer": "^8.2.1",
+    "@types/lodash": "^4.14.182",
+    "@types/progress": "^2.0.5",
+    "add-js-extension": "^1.0.4",
+    "eslint": "^8.20.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "archiver": "^5.3.1",
+    "axios": "^0.27.2",
+    "chalk": "^5.0.1",
+    "cli-progress": "^3.11.2",
+    "commander": "^9.4.0",
+    "inquirer": "^9.0.2",
+    "inquirer-tree-prompt": "^1.1.2",
+    "lodash": "^4.17.21",
+    "mangadex-full-api": "^5.11.1",
+    "p-queue": "^7.3.0",
+    "sequelize": "^6.21.3",
+    "sqlite3": "^5.0.11",
+    "ts-node": "^10.9.1"
+  }
+}
