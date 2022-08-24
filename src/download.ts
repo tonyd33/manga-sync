@@ -4,38 +4,26 @@ import path from "path";
 import axios from "axios";
 import _ from "lodash";
 import PQueue from "p-queue";
-import MFA from "mangadex-full-api";
 import archiver from "archiver";
-import { Bar } from "cli-progress";
-
-export async function downloadChapters(
-    mangaPath: string,
-    chapters: MFA.Chapter[],
-    cb?: () => unknown
-) {
-    // Create directory for each chapter
-    for (const chapter of chapters) {
-        await downloadChapter({ mangaPath, chapter });
-        if (cb) cb();
-    }
-}
 
 export async function downloadChapter({
     mangaPath,
-    chapter,
+    pages,
+    name,
 }: {
     mangaPath: string;
-    chapter: MFA.Chapter;
+    /** array of urls of chapter pages, ordered */
+    pages: string[];
+    name: string;
 }) {
-    const chapterPath = path.join(mangaPath, getChapterFilename(chapter));
+    const chapterPath = path.join(mangaPath, name);
     await fs.promises.mkdir(chapterPath, { recursive: true });
 
     const queue = new PQueue({
-        concurrency: 5,
+        concurrency: 10,
         interval: 1000,
         intervalCap: 15,
     });
-    const pages = await chapter.getReadablePages();
 
     const numPagesPadding =
         Math.max(Math.ceil(Math.log(pages.length) / Math.log(10)), 2) + 1;
@@ -104,8 +92,4 @@ async function zipDirectory(dirname: string): Promise<void> {
             reject(err);
         }
     });
-}
-
-function getChapterFilename(chapter: MFA.Chapter) {
-    return `[${chapter.chapter}] - ${chapter.title || chapter.id}`;
 }

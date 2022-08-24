@@ -10,7 +10,6 @@ const handler = new CLIHandler();
 class RootCommand extends Command {
     createCommand(name: string) {
         const cmd = new Command(name);
-        cmd.option("-d, --db <db>", "Path to database", "manga-sync-db.json");
         cmd.option(
             "-l, --locale <locale>",
             "Locale",

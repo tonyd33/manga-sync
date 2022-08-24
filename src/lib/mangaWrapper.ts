@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import { LocalMangaAttributes } from "../db/models/LocalManga";
 import { LocalChapterAttributes } from "../db/models/LocalChapter";
 import { RemoteChapterAttributes } from "../db/models/RemoteChapter";
@@ -34,8 +36,12 @@ export default class MangaWrapper {
         return !!this.localChapters.find((lc) => lc.chapter === chapter);
     }
 
+    listRemoteChapters(): RemoteChapterAttributes[] {
+        return _.uniqBy(this.remoteChapters, (rc) => rc.chapter);
+    }
+
     remoteChaptersToPull(): RemoteChapterAttributes[] {
-        return this.remoteChapters.filter((rc) =>
+        return this.listRemoteChapters().filter((rc) =>
             this.rcNamesToPull.has(rc.chapter)
         );
     }
